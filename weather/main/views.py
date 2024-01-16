@@ -1,13 +1,19 @@
 from django.shortcuts import render
+from os import getenv
+from dotenv import load_dotenv
+
 # import json to load json data to python dictionary
 import json
 # urllib.request to make a request to api
 import urllib.request
 
+load_dotenv()
+
+# Create your views here.
 def index(request):
     if request.method == 'POST':
         city = request.POST['city']
-        api_key = '9caa4332f6def01ae5858b02864cf97b'
+        api_key = getenv('api_key')
 
         # Constructing the URL with f-string
         url = f'http://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}'
